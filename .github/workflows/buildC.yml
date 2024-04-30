@@ -1,4 +1,4 @@
-name: Build C Program Okay
+name: Build C Program
 
 on: [push]
 
@@ -15,16 +15,13 @@ jobs:
       run: sudo apt-get install -y build-essential
 
     - name: Compile C program
-      run: gcc hello.c -o hello
+      run: gcc hello.c -o $GITHUB_WORKSPACE/hello.exe
       
-    - name: Save executable
-      run: mv hello $GITHUB_WORKSPACE/hello
-
     - name: Commit changes
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add hello
+        git add hello.exe
         git commit -m "Add compiled executable"
       
     - name: Push changes
